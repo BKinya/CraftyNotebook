@@ -20,62 +20,38 @@ import com.yourcompany.android.craftynotebook.ui.util.Screen
 
 @Composable
 fun NoteAppContent(
-    navigationType: NavigationType,
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    notesViewModel: NotesViewModel = viewModel(),
-    onDrawerClicked: () -> Unit = {},
-    contentType: ContentType
+  navigationType: NavigationType,
+  modifier: Modifier = Modifier,
+  navController: NavHostController = rememberNavController(),
+  notesViewModel: NotesViewModel = viewModel(),
+  onDrawerClicked: () -> Unit = {},
+  contentType: ContentType
 ) {
-    Surface(
-        modifier = modifier.fillMaxSize(),
-        color = MaterialTheme.colors.background
-    ) {
-        Row(modifier = Modifier.fillMaxSize()) {
-            AnimatedVisibility(visible = navigationType == NavigationType.NAVIGATION_RAIL) {
-                NoteNavigationRail(
-                    onDrawerClicked = onDrawerClicked,
-                    navController = navController
-                )
-            }
-            Column(
-                modifier = modifier.fillMaxSize()
-            ) {
+  Surface(
+    modifier = modifier.fillMaxSize(),
+    color = MaterialTheme.colors.background
+  ) {
+    Row(modifier = Modifier.fillMaxSize()) {
+      AnimatedVisibility(visible = navigationType == NavigationType.NAVIGATION_RAIL) {
+        NoteNavigationRail(
+          onDrawerClicked = onDrawerClicked,
+          navController = navController
+        )
+      }
+      Column(
+        modifier = modifier.fillMaxSize()
+      ) {
 
-                NavHost(
-                    navController = navController,
-                    startDestination = Screen.NoteList.route,
-                    modifier = modifier.weight(1f)
-                ) {
-                    composable(Screen.NoteList.route) {
-                        NotesScreen(
-                            notesViewModel = notesViewModel,
-                            contentType = contentType,
-                            navController = navController,
-                            getNotes = { notesViewModel.getNotes() }
-                        )
-                    }
-                    composable("${Screen.NoteDetail.route}/{noteIndex}") { backStackEntry ->
-                        val noteIndex =
-                            backStackEntry.arguments?.getString("noteIndex")?.toInt() ?: 0
-                        NoteDetailScreen(
-                            notesViewModel = notesViewModel,
-                            noteIndex = noteIndex
-                        )
-                    }
-                    composable(Screen.Profile.route) {
-                        ProfileScreen()
-                    }
-                    composable(Screen.DeletedNotes.route) {
-                        DeletedNotesScreen(notesViewModel = notesViewModel)
-                    }
-                }
-                AnimatedVisibility(visible = navigationType == NavigationType.BOTTOM_NAVIGATION ) {
-                    NoteBottomNavigationBar(navController = navController)
-                }
-            }
+        NoteNavHost(
+          modifier = modifier.weight(1f),
+          contentType = contentType,
+          navController = navController,
+          notesViewModel = notesViewModel
+        )
+        AnimatedVisibility(visible = navigationType == NavigationType.BOTTOM_NAVIGATION) {
+          NoteBottomNavigationBar(navController = navController)
         }
-
-
+      }
     }
+  }
 }

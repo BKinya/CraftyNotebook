@@ -21,59 +21,89 @@ import com.yourcompany.android.craftynotebook.ui.util.Screen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationDrawerContent(
-    navController: NavController,
-    modifier: Modifier = Modifier,
-    selectedDestination: String = Screen.NoteList.route,
-    onDrawerClicked: () -> Unit = {}
+  navController: NavController,
+  modifier: Modifier = Modifier,
+  selectedDestination: String = Screen.Notes.route,
+  onDrawerClicked: () -> Unit = {}
 ) {
-    Column(
-        modifier
-            .wrapContentWidth()
-            .fillMaxHeight()
-            .background(MaterialTheme.colorScheme.inverseOnSurface)
-            .padding(24.dp)
+  Column(
+      modifier
+          .wrapContentWidth()
+          .fillMaxHeight()
+          .background(MaterialTheme.colorScheme.inverseOnSurface)
+          .padding(24.dp)
+  ) {
+    Row(
+      modifier = modifier
+          .fillMaxWidth()
+          .padding(16.dp),
+      horizontalArrangement = Arrangement.SpaceBetween,
+      verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = stringResource(id = R.string.app_name ).uppercase(),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary
-            )
-            IconButton(onClick = onDrawerClicked) {
-                Icon(
-                    imageVector = Icons.Default.Menu,
-                    contentDescription = stringResource(id = R.string.app_name)
-                )
-            }
-        }
-
-        NavigationDrawerItem(
-            selected = selectedDestination == Screen.NoteList.route,
-            label = { Text(text = stringResource(id = R.string.noteList), modifier = Modifier.padding(horizontal = 16.dp)) },
-            icon = { Icon(imageVector = Icons.Default.Home, contentDescription =  stringResource(id = R.string.noteList)) },
-            colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
-            onClick = { navController.navigate(Screen.NoteList.route) }
+      Text(
+        text = stringResource(id = R.string.app_name).uppercase(),
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.primary
+      )
+      IconButton(onClick = onDrawerClicked) {
+        Icon(
+          imageVector = Icons.Default.Menu,
+          contentDescription = stringResource(id = R.string.app_name)
         )
-        NavigationDrawerItem(
-            selected = selectedDestination == Screen.Profile.route,
-            label = { Text(text = stringResource(id = R.string.profile), modifier = Modifier.padding(horizontal = 16.dp)) },
-            icon = { Icon(imageVector =  Icons.Default.Person, contentDescription =  stringResource(id = R.string.profile)) },
-            colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
-            onClick = { navController.navigate(Screen.Profile.route) }
-        )
-        NavigationDrawerItem(
-            selected = selectedDestination == Screen.DeletedNotes.route,
-            label = { Text(text = stringResource(id = R.string.deleted), modifier = Modifier.padding(horizontal = 16.dp)) },
-            icon = { Icon(imageVector =  Icons.Default.Clear, contentDescription =  stringResource(id = R.string.deleted)) },
-            colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
-            onClick = {  navController.navigate(Screen.DeletedNotes.route) }
-        )
-
+      }
     }
+
+    NavigationDrawerItem(
+      selected = selectedDestination == Screen.Notes.route,
+      label = {
+        Text(
+          text = stringResource(id = R.string.noteList),
+          modifier = Modifier.padding(horizontal = 16.dp)
+        )
+      },
+      icon = {
+        Icon(
+          imageVector = Icons.Default.Home,
+          contentDescription = stringResource(id = R.string.noteList)
+        )
+      },
+      colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
+      onClick = { navController.navigate(Screen.Notes.route) }
+    )
+    NavigationDrawerItem(
+      selected = selectedDestination == Screen.Profile.route,
+      label = {
+        Text(
+          text = stringResource(id = R.string.profile),
+          modifier = Modifier.padding(horizontal = 16.dp)
+        )
+      },
+      icon = {
+        Icon(
+          imageVector = Icons.Default.Person,
+          contentDescription = stringResource(id = R.string.profile)
+        )
+      },
+      colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
+      onClick = { navController.navigate(Screen.Profile.route) }
+    )
+    NavigationDrawerItem(
+      selected = selectedDestination == Screen.DeletedNotes.route,
+      label = {
+        Text(
+          text = stringResource(id = R.string.deleted),
+          modifier = Modifier.padding(horizontal = 16.dp)
+        )
+      },
+      icon = {
+        Icon(
+          imageVector = Icons.Default.Clear,
+          contentDescription = stringResource(id = R.string.deleted)
+        )
+      },
+      colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
+      onClick = { navController.navigate(Screen.DeletedNotes.route) }
+    )
+
+  }
 }

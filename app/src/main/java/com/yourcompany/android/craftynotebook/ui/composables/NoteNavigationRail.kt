@@ -21,9 +21,9 @@ import com.yourcompany.android.craftynotebook.ui.util.Screen
 @Composable
 @Preview
 fun NoteNavigationRail(
-    onDrawerClicked: () -> Unit = {},
-    selectedDestination: String = Screen.NoteList.route,
-    navController: NavController = rememberNavController()
+  onDrawerClicked: () -> Unit = {},
+  selectedDestination: String = Screen.Notes.route,
+  navController: NavController = rememberNavController()
 ) {
     NavigationRail(modifier = Modifier.fillMaxHeight()) {
         NavigationRailItem(
@@ -37,8 +37,8 @@ fun NoteNavigationRail(
             }
         )
         NavigationRailItem(
-            selected = selectedDestination == Screen.NoteList.route,
-            onClick = { navController.navigate(Screen.NoteList.route) },
+            selected = selectedDestination == Screen.Notes.route,
+            onClick = { navController.navigate(Screen.Notes.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,

@@ -60,7 +60,6 @@ class MainActivity : ComponentActivity() {
         setTheme(R.style.AppTheme)
 
         super.onCreate(savedInstanceState)
-        // TODO 2: Get the folding posture
         val devicePostureFlow = WindowInfoTracker.getOrCreate(this).windowLayoutInfo(this)
             .flowWithLifecycle(this.lifecycle)
             .map { layoutInfo ->
@@ -86,13 +85,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CraftyNotebookTheme {
-                // TODO 1: add calculateWindowSizeClass() to the root of your Compose UI and pass it to NoteApp composable
                 val windowSize = calculateWindowSizeClass(activity = this)
-                // TODO 3: Observe device posture
                 val devicePosture = devicePostureFlow.collectAsState().value
                 NoteApp(
-                    windowSize.widthSizeClass,// 1
-                    devicePosture, // 3
+                    windowSize.widthSizeClass,
+                    devicePosture,
                     notesViewModel = notesViewModel,
                 )
             }

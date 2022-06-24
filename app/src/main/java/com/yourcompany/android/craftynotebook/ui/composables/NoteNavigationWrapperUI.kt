@@ -23,7 +23,6 @@ fun NoteNavigationWrapperUi(
 ) {
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    // TODO 6: Wrapping in a navigation drawer
     if (navigationType == NavigationType.PERMANENT_NAVIGATION_DRAWER) {
         PermanentNavigationDrawer(drawerContent = { NavigationDrawerContent(
             navController = navController
@@ -61,9 +60,7 @@ fun NoteNavigationWrapperUi(
                     }
                 },
                 contentType = contentType
-
             )
         }
     }
-
 }

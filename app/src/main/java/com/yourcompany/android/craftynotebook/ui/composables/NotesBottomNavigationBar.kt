@@ -3,9 +3,7 @@ package com.yourcompany.android.craftynotebook.ui.composables
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Icon
@@ -22,40 +20,42 @@ import com.yourcompany.android.craftynotebook.R
 import com.yourcompany.android.craftynotebook.ui.util.Screen
 
 @Composable
-fun NoteBottomNavigationBar( navController: NavController,modifier: Modifier = Modifier){
-    NavigationBar(modifier = modifier.fillMaxWidth(), containerColor = MaterialTheme.colors.background) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentDestination = navBackStackEntry?.destination
-        NavigationBarItem(
-            selected = currentDestination?.hierarchy?.any { it.route == Screen.NoteList.route } == true,
-            onClick = { navController.navigate(Screen.NoteList.route) },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = stringResource(id = R.string.noteList)
-                )
-            }
+fun NoteBottomNavigationBar(navController: NavController, modifier: Modifier = Modifier) {
+  NavigationBar(
+    modifier = modifier.fillMaxWidth(), containerColor = MaterialTheme.colors.background
+  ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+    NavigationBarItem(
+      selected = currentDestination?.hierarchy?.any { it.route == Screen.Notes.route } == true,
+      onClick = { navController.navigate(Screen.Notes.route) },
+      icon = {
+        Icon(
+          imageVector = Icons.Default.Home,
+          contentDescription = stringResource(id = R.string.noteList)
         )
+      }
+    )
 
-        NavigationBarItem(
-            selected = currentDestination?.hierarchy?.any { it.route == Screen.Profile.route } == true,
-            onClick = { navController.navigate(Screen.Profile.route) },
-            icon = {
-                Icon(
-                    imageVector = Icons.Outlined.Person,
-                    contentDescription = stringResource(id = R.string.profile)
-                )
-            }
+    NavigationBarItem(
+      selected = currentDestination?.hierarchy?.any { it.route == Screen.Profile.route } == true,
+      onClick = { navController.navigate(Screen.Profile.route) },
+      icon = {
+        Icon(
+          imageVector = Icons.Outlined.Person,
+          contentDescription = stringResource(id = R.string.profile)
         )
-        NavigationBarItem(
-            selected = currentDestination?.hierarchy?.any { it.route == Screen.DeletedNotes.route } == true,
-            onClick = { navController.navigate(Screen.DeletedNotes.route) },
-            icon = {
-                Icon(
-                    imageVector = Icons.Outlined.Delete,
-                    contentDescription = stringResource(id = R.string.deleted)
-                )
-            }
+      }
+    )
+    NavigationBarItem(
+      selected = currentDestination?.hierarchy?.any { it.route == Screen.DeletedNotes.route } == true,
+      onClick = { navController.navigate(Screen.DeletedNotes.route) },
+      icon = {
+        Icon(
+          imageVector = Icons.Outlined.Delete,
+          contentDescription = stringResource(id = R.string.deleted)
         )
-    }
+      }
+    )
+  }
 }
