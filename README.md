@@ -8,10 +8,17 @@ A notebook app using jetpack compose optimized for all screen sizes.
 **- [Technical](#technical)**<br>
 
 ## About the App
-A note book app optimized for all screen sizes :]
+A notebook app optimized for all screen sizes
 
 ## General Preview
-<img src="https://github.com/BKinya/Greetings-App/blob/master/img/Screenshot_20220602-152232_Greetings.jpg" width="200" alt="Greetings in Kimeru" class = "bordered">&emsp;<img src="https://github.com/BKinya/Greetings-App/blob/master/img/Screenshot_20220602-153204_Greetings.jpg" width="200" alt="Greetings in Kiswahili" class = "bordered">&emsp;<img src="https://github.com/BKinya/Greetings-App/blob/master/img/Screenshot_20220602-153155_Greetings.jpg" width="200" alt="Greetings in English" class = "bordered">
+#### Compact Screen Size, Phone
+<img src="https://github.com/BKinya/CraftyNotebook/blob/main/img/phone.PNG" width="250" height="500" alt="List of notes in a compact width like a phone">
+
+#### Medium Screen Size, Foldable
+<img src="https://github.com/BKinya/CraftyNotebook/blob/main/img/foldable.PNG" width="500" height="550" alt="List of notes in a medium width like a foldable" >
+
+#### Expanded Screen Size, Tablet or Chromebook
+<img src="https://github.com/BKinya/CraftyNotebook/blob/main/img/tablet.PNG" width="800" height="500" alt="List of notes in a medium width like a tablet or chromebook tablet">
 
 
 ## Technical
@@ -59,6 +66,8 @@ Android Engineer | Android Author @ raywenderlich.com | Likes Crochet and Knitti
 
 
 ## References/Resources
-- [Guide to App architrecture](https://developer.android.com/topic/architecture)<br>
+- [Building Adaptive Layouts](https://developer.android.com/jetpack/compose/layouts/adaptive)<br>
 - [State and Jetpack Compose](https://developer.android.com/jetpack/compose/state)<br>
-- [Navigation in Jetpack Compose](https://medium.com/google-developer-experts/navigating-in-jetpack-compose-78c78d365c6a)
+- [Navigation in Jetpack Compose](https://medium.com/google-developer-experts/navigating-in-jetpack-compose-78c78d365c6a)<br>
+- [Guide to App architrecture](https://developer.android.com/topic/architecture)
+
