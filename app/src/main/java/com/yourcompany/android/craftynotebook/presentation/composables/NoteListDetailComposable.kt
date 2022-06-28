@@ -10,21 +10,23 @@ import com.yourcompany.android.craftynotebook.domain.model.Note
 
 @Composable
 fun NoteListDetailComposable(
-    notes: List<Note>,
-    modifier: Modifier = Modifier,
-    selectedIndex: MutableState<Int> = rememberSaveable { mutableStateOf(0) }
+  notes: List<Note>,
+  modifier: Modifier = Modifier,
+  selectedIndex: MutableState<Int> = rememberSaveable { mutableStateOf(0) }
 ) {
-    Row(
-        modifier = modifier,
-    ) {
-        NoteListComposable(
-            notes = notes,
-            modifier = modifier.weight(1f),
-            onItemSelected = { index ->
-                selectedIndex.value = index
-            })
+  Row(
+    modifier = modifier,
+  ) {
+    NoteListComposable(
+      notes = notes,
+      modifier = modifier.weight(1f),
+      onItemSelected = { index ->
+        selectedIndex.value = index
+      })
 
-        val note = notes[selectedIndex.value]
-        NoteDetailComposable(modifier = modifier.weight(1f), note = note)
+    if (notes.isNotEmpty()) {
+      val note = notes[selectedIndex.value]
+      NoteDetailComposable(modifier = modifier.weight(1f), note = note)
     }
+  }
 }
