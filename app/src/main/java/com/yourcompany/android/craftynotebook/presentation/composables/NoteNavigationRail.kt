@@ -5,10 +5,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.NavigationRail
 import androidx.compose.material.NavigationRailItem
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -72,7 +69,7 @@ fun NoteNavigationRail(
       } },
       icon = {
         Icon(
-          imageVector = Icons.Default.Clear,
+          imageVector = Icons.Default.Delete,
           stringResource(id = R.string.deleted)
         )
       }
