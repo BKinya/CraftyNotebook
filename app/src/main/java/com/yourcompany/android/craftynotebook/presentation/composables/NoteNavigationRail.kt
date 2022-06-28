@@ -25,48 +25,58 @@ fun NoteNavigationRail(
   selectedDestination: String = Screen.Notes.route,
   navController: NavController = rememberNavController()
 ) {
-    NavigationRail(modifier = Modifier.fillMaxHeight()) {
-        NavigationRailItem(
-            selected = false,
-            onClick = onDrawerClicked,
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Menu,
-                    contentDescription = stringResource(id = R.string.app_name)
-                )
-            }
+  NavigationRail(modifier = Modifier.fillMaxHeight()) {
+    NavigationRailItem(
+      selected = false,
+      onClick = onDrawerClicked,
+      icon = {
+        Icon(
+          imageVector = Icons.Default.Menu,
+          contentDescription = stringResource(id = R.string.app_name)
         )
-        NavigationRailItem(
-            selected = selectedDestination == Screen.Notes.route,
-            onClick = { navController.navigate(Screen.Notes.route) },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = stringResource(id = R.string.noteList)
-                )
-            }
+      }
+    )
+    NavigationRailItem(
+      selected = selectedDestination == Screen.Notes.route,
+      onClick = {
+        navController.navigate(Screen.Notes.route) {
+          popUpTo(Screen.Notes.route) { inclusive = true }
+        }
+      },
+      icon = {
+        Icon(
+          imageVector = Icons.Default.Home,
+          contentDescription = stringResource(id = R.string.noteList)
         )
-        NavigationRailItem(
-            selected = selectedDestination == Screen.Profile.route,
-            onClick = { navController.navigate(Screen.Profile.route) },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    stringResource(id = R.string.profile)
-                )
-            }
+      }
+    )
+    NavigationRailItem(
+      selected = selectedDestination == Screen.Profile.route,
+      onClick = {
+        navController.navigate(Screen.Profile.route) {
+          popUpTo(Screen.Notes.route)
+        }
+      },
+      icon = {
+        Icon(
+          imageVector = Icons.Default.Person,
+          stringResource(id = R.string.profile)
         )
+      }
+    )
 
-        NavigationRailItem(
-            selected = selectedDestination == Screen.DeletedNotes.route,
-            onClick = { navController.navigate(Screen.DeletedNotes.route) },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Clear,
-                    stringResource(id = R.string.deleted)
-                )
-            }
+    NavigationRailItem(
+      selected = selectedDestination == Screen.DeletedNotes.route,
+      onClick = { navController.navigate(Screen.DeletedNotes.route){
+        popUpTo(Screen.Notes.route)
+      } },
+      icon = {
+        Icon(
+          imageVector = Icons.Default.Clear,
+          stringResource(id = R.string.deleted)
         )
+      }
+    )
 
-    }
+  }
 }

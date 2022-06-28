@@ -27,16 +27,16 @@ fun NavigationDrawerContent(
   onDrawerClicked: () -> Unit = {}
 ) {
   Column(
-      modifier
-          .wrapContentWidth()
-          .fillMaxHeight()
-          .background(MaterialTheme.colorScheme.inverseOnSurface)
-          .padding(24.dp)
+    modifier
+      .wrapContentWidth()
+      .fillMaxHeight()
+      .background(MaterialTheme.colorScheme.inverseOnSurface)
+      .padding(24.dp)
   ) {
     Row(
       modifier = modifier
-          .fillMaxWidth()
-          .padding(16.dp),
+        .fillMaxWidth()
+        .padding(16.dp),
       horizontalArrangement = Arrangement.SpaceBetween,
       verticalAlignment = Alignment.CenterVertically
     ) {
@@ -68,7 +68,13 @@ fun NavigationDrawerContent(
         )
       },
       colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
-      onClick = { navController.navigate(Screen.Notes.route) }
+      onClick = {
+        navController.navigate(Screen.Notes.route) {
+          navController.navigate(Screen.Notes.route) {
+            popUpTo(Screen.Notes.route) { inclusive = true }
+          }
+        }
+      }
     )
     NavigationDrawerItem(
       selected = selectedDestination == Screen.Profile.route,
@@ -85,7 +91,11 @@ fun NavigationDrawerContent(
         )
       },
       colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
-      onClick = { navController.navigate(Screen.Profile.route) }
+      onClick = {
+        navController.navigate(Screen.Profile.route) {
+          popUpTo(Screen.Notes.route)
+        }
+      }
     )
     NavigationDrawerItem(
       selected = selectedDestination == Screen.DeletedNotes.route,
@@ -102,8 +112,11 @@ fun NavigationDrawerContent(
         )
       },
       colors = NavigationDrawerItemDefaults.colors(unselectedContainerColor = Color.Transparent),
-      onClick = { navController.navigate(Screen.DeletedNotes.route) }
+      onClick = {
+        navController.navigate(Screen.DeletedNotes.route) {
+          popUpTo(Screen.Notes.route)
+        }
+      }
     )
-
   }
 }

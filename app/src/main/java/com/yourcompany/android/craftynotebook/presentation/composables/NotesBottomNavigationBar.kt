@@ -28,7 +28,11 @@ fun NoteBottomNavigationBar(navController: NavController, modifier: Modifier = M
     val currentDestination = navBackStackEntry?.destination
     NavigationBarItem(
       selected = currentDestination?.hierarchy?.any { it.route == Screen.Notes.route } == true,
-      onClick = { navController.navigate(Screen.Notes.route) },
+      onClick = {
+        navController.navigate(Screen.Notes.route) {
+          popUpTo(Screen.Notes.route) { inclusive = true }
+        }
+      },
       icon = {
         Icon(
           imageVector = Icons.Default.Home,
@@ -39,7 +43,11 @@ fun NoteBottomNavigationBar(navController: NavController, modifier: Modifier = M
 
     NavigationBarItem(
       selected = currentDestination?.hierarchy?.any { it.route == Screen.Profile.route } == true,
-      onClick = { navController.navigate(Screen.Profile.route) },
+      onClick = {
+        navController.navigate(Screen.Profile.route) {
+          popUpTo(Screen.Notes.route)
+        }
+      },
       icon = {
         Icon(
           imageVector = Icons.Outlined.Person,
@@ -49,7 +57,11 @@ fun NoteBottomNavigationBar(navController: NavController, modifier: Modifier = M
     )
     NavigationBarItem(
       selected = currentDestination?.hierarchy?.any { it.route == Screen.DeletedNotes.route } == true,
-      onClick = { navController.navigate(Screen.DeletedNotes.route) },
+      onClick = {
+        navController.navigate(Screen.DeletedNotes.route) {
+          popUpTo(Screen.Notes.route)
+        }
+      },
       icon = {
         Icon(
           imageVector = Icons.Outlined.Delete,
