@@ -1,5 +1,7 @@
 package com.yourcompany.android.craftynotebook.data.local
 
+import com.yourcompany.android.craftynotebook.domain.model.Note
+
 object NotesDataSource {
     val notes = mutableListOf(
         Note(
